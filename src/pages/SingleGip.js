@@ -1,50 +1,59 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-
-
-import {HiOutlineExternalLink} from "react-icons/hi";
-import {HiMiniChevronDown, HiMiniChevronUp, HiMiniHeart} from "react-icons/hi2";
-import {FaPaperPlane} from "react-icons/fa6";
-import {IoCodeSharp} from "react-icons/io5";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import {
+  HiMiniChevronDown,
+  HiMiniChevronUp,
+  HiMiniHeart,
+} from "react-icons/hi2";
+import { FaPaperPlane } from "react-icons/fa6";
+import { IoCodeSharp } from "react-icons/io5";
 import { GifState } from "../context/context";
 import FollowOn from "../component/follow-on";
-import Gif from "../component/gif";
+import Gif from "../component/Gif";
+import { FacebookIcon, FacebookMessengerShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+
 
 const contentType = ["gifs", "stickers", "texts"];
 
-const GifPage = () => {
-  const {type, slug} = useParams();
+const SingleGip = () => {
+  const { type, slug } = useParams();
   const [gif, setGif] = useState({});
   const [relatedGifs, setRelatedGifs] = useState([]);
   const [readMore, setReadMore] = useState(false);
 
-  const {gf, addToFavorites, favorites} = GifState();
+  const { gf, addToFavorites, favorites } = GifState();
 
   useEffect(() => {
     if (!contentType.includes(type)) {
       throw new Error("Invalid Content Type");
     }
+
+    // Check if gf is defined before making API calls
+    if (!gf) return;
+
     const fetchGif = async () => {
-      const gifId = slug.split("-");
-      const {data} = await gf.gif(gifId[gifId.length - 1]);
-      const {data: related} = await gf.related(gifId[gifId.length - 1], {
-        limit: 10,
-      });
-      setGif(data);
-      setRelatedGifs(related);
+      try {
+        const gifId = slug.split("-").pop();
+        const { data } = await gf.gif(gifId);
+        // const { data } = await gf.gif(gifId[gifId.length-1]);
+        // console.log(data);
+        // console.log("hi");
+        const { data: related } = await gf.related(gifId, {
+          limit: 10,
+        });
+        setGif(data);
+        setRelatedGifs(related);
+      } catch (error) {
+        console.error("Error fetching GIF data:", error);
+      }
     };
 
     fetchGif();
-  }, []);
+  }, [type, slug, gf]); // Ensure effect runs when type, slug, or gf changes
 
-  const shareGif = () => {
-    // Assignment
-  };
-
-  const EmbedGif = () => {
-    // Assignment
-  };
+  
 
   return (
     <div className="grid grid-cols-4 my-10 gap-4">
@@ -91,11 +100,7 @@ const GifPage = () => {
 
         {gif?.source && (
           <div>
-            <span
-              className="faded-text" //custom - faded-text
-            >
-              Source
-            </span>
+            <span className="faded-text">Source</span>
             <div className="flex items-center text-sm font-bold gap-1">
               <HiOutlineExternalLink size={25} />
               <a href={gif.source} target="_blank" className="truncate">
@@ -105,7 +110,7 @@ const GifPage = () => {
           </div>
         )}
       </div>
-
+     
       <div className="col-span-4 sm:col-span-3">
         <div className="flex gap-6">
           <div className="w-full sm:w-3/4">
@@ -119,14 +124,13 @@ const GifPage = () => {
                 alt={gif?.user?.display_name}
                 className="h-14"
               />
+              
               <div className="px-2">
                 <div className="font-bold">{gif?.user?.display_name}</div>
                 <div className="faded-text">@{gif?.user?.username}</div>
               </div>
-
-              <button className="ml-auto" onClick={shareGif}>
-                <FaPaperPlane size={25} />
-              </button>
+                
+              
             </div>
             {/* -- Mobile UI -- */}
           </div>
@@ -144,20 +148,17 @@ const GifPage = () => {
               />
               Favorite
             </button>
-            <button
-              onClick={shareGif} // Assignment
-              className="flex gap-6 items-center font-bold text-lg"
-            >
-              <FaPaperPlane size={25} />
-              Share
-            </button>
-            <button
-              onClick={EmbedGif} // Assignment
-              className="flex gap-5 items-center font-bold text-lg"
-            >
-              <IoCodeSharp size={30} />
-              Embed
-            </button>
+          <TwitterShareButton url={"https://x.com/"}>
+          <TwitterIcon size={40} round={true}></TwitterIcon>
+          </TwitterShareButton>
+           <FacebookMessengerShareButton>
+           <FacebookIcon size={40} round={true}/>
+           </FacebookMessengerShareButton>
+           <WhatsappShareButton url={gif?.user?.avatar_url}>
+            <WhatsappIcon size={40} round={true}></WhatsappIcon>
+           </WhatsappShareButton>
+           
+            
           </div>
         </div>
 
@@ -174,4 +175,5 @@ const GifPage = () => {
   );
 };
 
-export default GifPage;
+export default SingleGip;
+

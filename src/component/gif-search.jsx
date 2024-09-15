@@ -27,7 +27,7 @@ const GifSearch = () => {
       {query && (
         <button
           onClick={() => setQuery("")}
-          className="absolute bg-gray-300 opacity-90 rounded-full right-16 mr-2 top-1/2 transform -translate-y-1/2 p-1"
+          className=" text-blac absolute bg-gray-300 opacity-90 rounded-full right-16 mr-2 top-1/2 transform -translate-y-1/2 p-1 "
         >
           <HiMiniXMark size={22} />
         </button>

@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 
 
 import { GifState } from "../context/context";
-import Gif from "../component/gif";
+import Gif from "../component/Gif";
 import FollowOn from "../component/follow-on";
 
 const Category = () => {
