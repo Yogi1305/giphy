@@ -12,12 +12,14 @@ import { IoCodeSharp } from "react-icons/io5";
 import { GifState } from "../context/context";
 import FollowOn from "../component/follow-on";
 import Gif from "../component/Gif";
-import { FacebookIcon, FacebookMessengerShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+import { FacebookIcon, FacebookMessengerShareButton, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 
 
 const contentType = ["gifs", "stickers", "texts"];
 
 const SingleGip = () => {
+ 
+ 
   const { type, slug } = useParams();
   const [gif, setGif] = useState({});
   const [relatedGifs, setRelatedGifs] = useState([]);
@@ -53,7 +55,7 @@ const SingleGip = () => {
     fetchGif();
   }, [type, slug, gf]); // Ensure effect runs when type, slug, or gf changes
 
-  
+  const shareUrl = gif?.images?.fixed_width.webp;
 
   return (
     <div className="grid grid-cols-4 my-10 gap-4">
@@ -63,9 +65,11 @@ const SingleGip = () => {
             <div className="flex gap-1">
               <img
                 src={gif?.user?.avatar_url}
+               
                 alt={gif?.user?.display_name}
                 className="h-14"
               />
+              {console.log(gif?.user?.avatar_url)}
               <div className="px-2">
                 <div className="font-bold">{gif?.user?.display_name}</div>
                 <div className="faded-text">@{gif?.user?.username}</div>
@@ -148,13 +152,14 @@ const SingleGip = () => {
               />
               Favorite
             </button>
-          <TwitterShareButton url={"https://x.com/"}>
+          <TwitterShareButton url={shareUrl}>
           <TwitterIcon size={40} round={true}></TwitterIcon>
           </TwitterShareButton>
-           <FacebookMessengerShareButton>
-           <FacebookIcon size={40} round={true}/>
-           </FacebookMessengerShareButton>
-           <WhatsappShareButton url={gif?.user?.avatar_url}>
+          <FacebookShareButton
+          url={shareUrl}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+           <WhatsappShareButton url={shareUrl}>
             <WhatsappIcon size={40} round={true}></WhatsappIcon>
            </WhatsappShareButton>
            
