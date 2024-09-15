@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 import { HiOutlineExternalLink } from "react-icons/hi";
 import {
@@ -55,7 +56,8 @@ const SingleGip = () => {
     fetchGif();
   }, [type, slug, gf]); // Ensure effect runs when type, slug, or gf changes
 
-  const shareUrl = gif?.images?.fixed_width.webp;
+  // const shareUrl = gif?.images?.fixed_width.webp;
+  const shareUrl=window.location.href;
 
   return (
     <div className="grid grid-cols-4 my-10 gap-4">
