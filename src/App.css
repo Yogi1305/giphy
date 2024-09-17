@@ -5,7 +5,7 @@
 @layer utilities {
   .gradient {
       /* Custom gradient */
-      background-image: linear-gradient(to right, rgb(0, 60, 128), blue, rgba(255, 192, 241, 0.941));
+      background-image: linear-gradient(to right, rgb(0, 137, 123), rgb(30, 136, 229), rgb(216, 27, 96));
   }
   .faded-text {
       @apply font-bold text-sm text-gray-400;

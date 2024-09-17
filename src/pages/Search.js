@@ -26,7 +26,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     fetchSearchResults();
-  }, [filter]);
+  }, [filter,query]);
 
   return (
     <div className="my-4">

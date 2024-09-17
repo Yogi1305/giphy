@@ -3,3 +3,26 @@
     padding-left: 6px;
     
 }
+.your-class {
+    background: linear-gradient(to top right, #db2777, #f472b6);
+    color: white; 
+    padding-left: 1rem; 
+    padding-right: 1rem;
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem;
+    border-top-right-radius: 0.25rem; 
+    border-bottom-right-radius: 0.25rem; 
+}
+.your-class1 {
+    position: absolute;
+    background-color: #d1d5db;
+    opacity: 0.9;
+    border-radius: 9999px;
+    right: 4rem;
+    margin-right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.25rem;
+    color: black;
+}
+
