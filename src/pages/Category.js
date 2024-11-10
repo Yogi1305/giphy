@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 
 import {useParams} from "react-router-dom";
-import { GifState } from "../context/context";
-import Gif from "../component/Gif";
-import FollowOn from "../component/follow-on";
+import { GifState } from "../context/context.js";
+import Gif from "../component/Gif.js";
+import FollowOn from "../component/follow-on.jsx";
 
 const Category = () => {
   const [searchResults, setSearchResults] = useState([]);

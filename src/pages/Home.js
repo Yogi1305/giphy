@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 
-import Gif from "../component/Gif";
+import Gif from "../component/Gif.js";
 import FilterGif from "../component/filter-gif";
-import { GifState } from "../context/context";
+import { GifState } from "../context/context.js";
 
 const Home = () => {
   const { gf, gifs, setGifs, filter } = GifState();

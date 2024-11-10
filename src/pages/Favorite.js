@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 import { GifState } from "../context/context";
-import Gif from "../component/Gif";
+import Gif from "../component/Gif.js";
 
 
 const Favorite = () => {

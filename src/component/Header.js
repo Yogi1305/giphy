@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiEllipsisVertical, HiMiniBars3BottomRight } from "react-icons/hi2";
-import { GifState } from "../context/context";
-import GifSearch from "./gif-search";
+import { GifState } from "../context/context.js";
+import GifSearch from "./gif-search.jsx";
 
 const Header = () => {
   const [category, setCategory] = useState([]);

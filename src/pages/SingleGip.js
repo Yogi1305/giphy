@@ -10,9 +10,9 @@ import {
 } from "react-icons/hi2";
 import { FaPaperPlane } from "react-icons/fa6";
 import { IoCodeSharp } from "react-icons/io5";
-import { GifState } from "../context/context";
-import FollowOn from "../component/follow-on";
-import Gif from "../component/Gif";
+import { GifState } from "../context/context.js";
+import FollowOn from "../component/follow-on.jsx";
+import Gif from "../component/Gif.js";
 import { FacebookIcon, FacebookMessengerShareButton, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 
 
